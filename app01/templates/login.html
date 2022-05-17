@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>old pig baby</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css') }}">
+    <script type="text/javascript" src="{{ url_for('static',filename='jquery/jquery-3.6.0.js') }}"></script>
+    <script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <style>
+        body{
+            margin: 0;
+        }
+        .log-in {
+            margin-top: 60px;
+            margin-left: 300px;
+        }
+        html{
+            height: 100%;
+        }
+    </style>
+</head>
+<body background="{{ url_for('static',filename='img/bg1.jpg') }}" style="background-size: 100% 100%">
+<div class="log-in">
+    <h1>欢迎来到 old pig 的登录系统！</h1>
+    <div>
+        <form method="post">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <ul class="flashes">
+                                {% for message in messages %}
+                                    <li>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endwith %}
+            <table class="dl">
+                <tr>
+                    <td>{{ form.name.label }}</td>
+                    <td>{{ form.name() }}{{ form.name.errors.0 }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.password.label }}</td>
+                    <td>{{ form.password }}{{ form.password.errors.0 }}{{ form.msg }}</td>
+                </tr>
+                <tr>
+                    <td><a href="{{ url_for('account.register') }}" class="btn btn-danger">注册</a></td>
+                    <td><input type="submit" class="btn btn-success" value="提交"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h1>welcome to the zoo</h1>
+
+
+    <h2>这里有🐖、🐂、🐇、🐕、🐱等主题乐园，您想去哪个？？</h2>
+    <ul>
+        <li>
+            <a href="{{ url_for('pig.index') }}">猪窝</a>
+        </li>
+        <li>
+            <a href="{{ url_for('cattle.index') }}">牛窝</a>
+        </li>
+        <li>
+            <a href="{{ url_for('rabbit.index') }}">兔窝</a>
+        </li>
+        <li>
+            <a href="{{ url_for('dog.index') }}">狗窝</a>
+        </li>
+        <li>
+            <a href="{{ url_for('cat.index') }}">猫窝</a>
+        </li>
+        <li>
+            <a href="{{ url_for('phone.index') }}">电话何用？</a>
+        </li>
+    </ul>
+
+
+
+
+
+
+{% endblock %}

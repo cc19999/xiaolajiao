@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="container">
+    <h1>定时发送邮件功能</h1>
+    <div class="form-group">
+        <label for="address">收件人:</label>
+        <input type="text" name="address" id="address">
+    </div>
+    <dib class="form-group">
+        <label for="title">标题:</label>
+        <input type="text" name="title" id="title">
+    </dib>
+    <div class="form-group">
+        <label for="content">内容:</label>
+        <textarea name="content" id="content"></textarea>
+    </div>
+    <dvi class="form-group">
+        <label for="">什么时候发送:</label>
+        <input type="date" name="cdate" id="cdate">
+        <input type="time" name="ctime" id="ctime">
+    </dvi>
+    <div class="form-group">
+        <input type="button" class="btn-success" id="btn" value="发送">
+
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $('#btn').click(function (){
+            var addr = $('#address').val()
+            var content = $('#content').val()
+            var title = $('#title').val()
+            var cdate = $('#cdate').val()
+            var ctime = $('#ctime').val()
+            var info = {
+                'addr':addr,
+                'title':title,
+                'content':content,
+                'cdate':cdate,
+                'ctime':ctime
+            }
+            console.log(info)
+            $.ajax({
+                url:'ctime_email',
+                type:'post',
+                contentType: 'application/json',
+                data: JSON.stringify(info),
+                success:function (data){
+                    console.log(JSON.parse(data))
+                }
+            })
+        })
+
+
+    </script>
+{% endblock %}

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>old pig baby</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css') }}">
+    <script type="text/javascript" src="{{ url_for('static',filename='jquery/jquery-3.6.0.js') }}"></script>
+    <script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <style>
+        html{
+            height: 100%;
+        }
+    </style>
+</head>
+<body background="{{ url_for('static',filename='img/bg1.jpg') }}" style="background-size: 100% 100%">
+
+<div class="container">
+<h1>欢迎来到 old pig 的注册系统！</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% for item in form %}
+        <p>{{ item.label }}:{{ item }}{{ item.errors.0 }}</p>
+        {% endfor %}
+        <div class="form-group">
+            <label for="">头像预览: <img id="avatar_img" width="50" height="50" src="{{ url_for('static',filename='img/r.jpg') }}" alt=""></label>
+            <span class="hidden" id="error"></span>
+        </div>
+        <a href="{{ url_for('account.login') }}" class="btn-danger btn">取消</a>
+        <input type="submit" value="提交" class=" btn btn-success" id="btn">
+    </form>
+</div>
+    <script>
+    {## 头像预览#}
+    $('#avatar').change(function (){
+        var file_obj = $(this)[0].files[0]
+        {#console.log('file_obj',file_obj)#}
+        var reader = new FileReader()
+        reader.readAsDataURL(file_obj)
+        {#console.log('reader.img',reader.result)#}
+        reader.onload = function (){
+            console.log('reader.img2222',reader.result)
+            $('#avatar_img').attr('src',reader.result)
+        }
+    })
+    $('#btn').click(function (){
+        var avatar_data = $('#avatar').val()
+        {#console.log('touxiang',avatar_data,typeof avatar_data)#}
+        {#console.log('jpg',avatar_data.endsWith('jpg'))#}
+        {#console.log('jpg',avatar_data.endsWith('png'))#}
+        if (avatar_data.endsWith('jpg') || avatar_data.endsWith('png')){
+            return true
+        }else{
+            console.log('头像格式不对')
+            return false
+        }
+
+    })
+    </script>
+</body>
+</html>
+
+
+
+
+
